@@ -80,7 +80,8 @@ class ExperimentApp:
                                text=f"Интервалы для задания параметров: \n   v ({self.v_range[0]} - {self.v_range[1]}),"
                                     f"a ({self.a_range[0]} - {self.a_range[1]}), "
                                     f"b ({self.b_range[0]} - {self.b_range[1]})", 
-                               font=("calibri", 14), bg='#167B7B', fg='white', anchor='w', relief="ridge")
+                               font=("calibri", 14), bg='#167B7B', fg='white', anchor='w', relief="ridge", 
+                               highlightbackground="#17385E", highlightthickness=1,)
         range_label.grid(row=15, columnspan=2, pady=10, sticky='w')
 
     def create_checkboxes(self):
