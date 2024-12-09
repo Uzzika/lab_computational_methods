@@ -32,7 +32,7 @@ class ExperimentApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Эксперимент по стратегическим подходам")
-        self.root.geometry("480x600")
+        self.root.geometry("470x600")
 
         self.n = 10
         self.steps = 10
