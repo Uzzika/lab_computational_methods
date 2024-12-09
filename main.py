@@ -10,9 +10,7 @@ class ExperimentApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Эксперимент по стратегическим подходам")
-        
-        # Фон окна
-        self.root.config(bg='#F3F4F6')
+        self.root.geometry("490x600")
 
         self.n = 10
         self.steps = 10
@@ -25,7 +23,7 @@ class ExperimentApp:
         self.b_range = (0.85, 1.0)
         
         # Основной фрейм для настройки и графика
-        self.main_frame = tk.Frame(root, bg='#F3F4F6', padx=8, pady=10)
+        self.main_frame = tk.Frame(root, bg='#7EADE3', padx=8, pady=10)
         self.main_frame.pack(fill='both', expand=True)
 
         # Создаем поля ввода в левой части
@@ -36,42 +34,44 @@ class ExperimentApp:
 
     def create_input_fields(self):
         """Функция для создания полей ввода."""
-        label = tk.Label(self.main_frame, text="Настройки эксперимента", font=("calibri", 20), bg='gray', fg='white', anchor='w', relief="ridge", highlightbackground="blue", highlightthickness=2)
-        label.grid(row=0, columnspan=2, pady=10, sticky='w')
+        label = tk.Label(self.main_frame, text="Настройки эксперимента", font=("calibri", 20), bg='#78E7A8', fg='black', 
+                         relief="ridge", highlightbackground="black", highlightthickness=1, width=23, anchor="center")
+        label.grid(row=0, columnspan=1, pady=15, padx=5)
         
         # Поля ввода с проверкой
-        self.n_label = tk.Label(self.main_frame, text="Количество партий (n):", font=("calibri", 14), bg='gray', fg='white', anchor='w')
-        self.n_label.grid(row=1, column=0, sticky="w", padx=10)
+        self.n_label = tk.Label(self.main_frame, text="Количество партий (n):", font=("calibri", 14), bg='#78E7A8', fg='black',
+                                relief="ridge", highlightbackground="black", highlightthickness=1, anchor='w')
+        self.n_label.grid(row=1, column=0, sticky="w", padx=10, pady=5)
         self.n_entry = tk.Entry(self.main_frame, validate='key', bg='white', fg='black')
-        self.n_entry.grid(row=1, column=1, padx=10, sticky="w")
+        self.n_entry.grid(row=1, column=1, padx=10, sticky="w", pady=5)
         self.n_entry.insert(0, str(self.n))
         
-        self.steps_label = tk.Label(self.main_frame, text="Количество этапов (steps):", 
-                                    font=("calibri", 14), bg='gray', fg='white', anchor='w')
-        self.steps_label.grid(row=2, column=0, sticky="w", padx=10)
+        self.steps_label = tk.Label(self.main_frame, text="Количество этапов (steps):", font=("calibri", 14), bg='#78E7A8', fg='black',
+                                     relief="ridge", highlightbackground="black", highlightthickness=1, anchor='w')
+        self.steps_label.grid(row=4, column=0, sticky="w", padx=10, pady=5)
         self.steps_entry = tk.Entry(self.main_frame, validate='key', bg='white', fg='black')
-        self.steps_entry.grid(row=2, column=1, padx=10, sticky="w")
+        self.steps_entry.grid(row=4, column=1, padx=10, sticky="w", pady=5)
         self.steps_entry.insert(0, str(self.steps))
         
-        self.v_label = tk.Label(self.main_frame, text="Влияние дозировки (v):", 
-                                font=("calibri", 14), bg='gray', fg='white', anchor='w')
-        self.v_label.grid(row=3, column=0, sticky="w", padx=10)
+        self.v_label = tk.Label(self.main_frame, text="Влияние дозировки (v):", font=("calibri", 14), bg='#78E7A8', fg='black', 
+                                relief="ridge", highlightbackground="black", highlightthickness=1, anchor='w')
+        self.v_label.grid(row=7, column=0, sticky="w", padx=10, pady=5)
         self.v_entry = tk.Entry(self.main_frame, validate='key', bg='white', fg='black')
-        self.v_entry.grid(row=3, column=1, padx=10, sticky="w")
+        self.v_entry.grid(row=7, column=1, padx=10, sticky="w", pady=5)
         self.v_entry.insert(0, str(self.v_range[0]))
 
-        self.a_label = tk.Label(self.main_frame, text="Начальная сахаристость (a):", 
-                                font=("calibri", 14), bg='gray', fg='white', anchor='w')
-        self.a_label.grid(row=4, column=0, sticky="w", padx=10)
+        self.a_label = tk.Label(self.main_frame, text="Начальная сахаристость (a):", font=("calibri", 14), bg='#78E7A8', fg='black',
+                                relief="ridge", highlightbackground="black", highlightthickness=1,  anchor='w')
+        self.a_label.grid(row=10, column=0, sticky="w", padx=10, pady=5)
         self.a_entry = tk.Entry(self.main_frame, validate='key', bg='white', fg='black')
-        self.a_entry.grid(row=4, column=1, padx=10, sticky="w")
+        self.a_entry.grid(row=10, column=1, padx=10, sticky="w", pady=5)
         self.a_entry.insert(0, str(self.a_range[0]))
         
-        self.b_label = tk.Label(self.main_frame, text="Коэффициент деградации (b):", 
-                                font=("calibri", 14), bg='gray', fg='white', anchor='w')
-        self.b_label.grid(row=5, column=0, sticky="w", padx=10)
+        self.b_label = tk.Label(self.main_frame, text="Коэффициент деградации (b):", font=("calibri", 14), bg='#78E7A8', fg='black', 
+                                relief="ridge", highlightbackground="black", highlightthickness=1, anchor='w')
+        self.b_label.grid(row=13, column=0, sticky="w", padx=10, pady=5)
         self.b_entry = tk.Entry(self.main_frame, validate='key', bg='white', fg='black')
-        self.b_entry.grid(row=5, column=1, padx=10, sticky="w")
+        self.b_entry.grid(row=13, column=1, padx=10, sticky="w", pady=5)
         self.b_entry.insert(0, str(self.b_range[0]))
 
     def create_range_labels(self):
@@ -80,8 +80,9 @@ class ExperimentApp:
                                text=f"Интервалы для задания параметров: \n   v ({self.v_range[0]} - {self.v_range[1]}),"
                                     f"a ({self.a_range[0]} - {self.a_range[1]}), "
                                     f"b ({self.b_range[0]} - {self.b_range[1]})", 
-                               font=("calibri", 14), bg='#D1D5DB', fg='#111827', anchor='w')
-        range_label.grid(row=10, columnspan=2, pady=10, sticky='w')
+                               font=("calibri", 14), bg='#78E7A8', fg='#111827', anchor='w', relief="ridge", 
+                               highlightbackground="black", highlightthickness=1,)
+        range_label.grid(row=15, columnspan=2, pady=10, sticky='w')
 
     def create_checkboxes(self):
         """Добавление чекбоксов для учета дозаривания и неорганических веществ."""
@@ -90,22 +91,24 @@ class ExperimentApp:
         self.inorganic_checkbox = tk.Checkbutton(self.main_frame, 
                                                  text="Учитывать неорганические вещества", 
                                                  variable=self.inorganic_checkbox_var, 
-                                                 bg='#D1D5DB', fg='#111827', anchor='w',  font=("calibri", 13))
-        self.inorganic_checkbox.grid(row=11, columnspan=2, pady=10)
+                                                 bg='#78E7A8', fg='#111827', anchor='w',  font=("calibri", 16), relief="ridge", 
+                                                 highlightbackground="black", highlightthickness=1,)
+        self.inorganic_checkbox.grid(row=17, columnspan=2, pady=10, sticky='w')
 
         # Чекбокс для учета дозаривания
         self.dosage_checkbox_var = tk.BooleanVar()
         self.dosage_checkbox = tk.Checkbutton(self.main_frame, 
                                               text="Использовать дозаривание", 
                                               variable=self.dosage_checkbox_var, 
-                                              bg='#D1D5DB', fg='#111827', anchor='w',  font=("calibri", 13))
-        self.dosage_checkbox.grid(row=12, columnspan=2, pady=10)
+                                              bg='#78E7A8', fg='#111827', anchor='w',  font=("calibri", 16), relief="ridge", 
+                                              highlightbackground="black", highlightthickness=1,)
+        self.dosage_checkbox.grid(row=19, columnspan=2, pady=10, sticky='w')
 
     def create_run_button(self):
         """Добавление кнопки для запуска эксперимента."""
         self.run_button = tk.Button(self.main_frame, text="Запустить эксперимент", command=self.on_run_button_click, 
-                                    bg='#3B82F6', fg='white', anchor='w', font=("calibri", 15))  # Цвет кнопки изменен
-        self.run_button.grid(row=14, columnspan=2, pady=25)
+                                    bg='#1A4B81', fg='white', anchor='center', font=("calibri", 25), width=20, height=1)
+        self.run_button.grid(row=21, columnspan=2, pady=20 )
 
     def on_run_button_click(self):
         # Получаем значения из чекбоксов
