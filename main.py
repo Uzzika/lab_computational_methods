@@ -75,13 +75,13 @@ class ExperimentApp:
         self.v_entry.grid(row=3, column=1, padx=10, sticky="w", pady=5)
         self.v_entry.insert(0, str(self.v_range[0]))
         
-        self.a_label = tk.Label(self.main_frame.canvas, text="Начальная сахаристость (a):", font=("calibri", 14), anchor='w', bg='#567ec2')
+        self.a_label = tk.Label(self.main_frame.canvas, text="Диапазон сахаристости партий \nдо переработок (a):", font=("calibri", 14), anchor='w', bg='#567ec2')
         self.a_label.grid(row=4, column=0, sticky="w", padx=10, pady=5)
         self.a_entry = tk.Entry(self.main_frame.canvas, validate='key', bg='white', fg='black', font=("calibri", 12))
         self.a_entry.grid(row=4, column=1, padx=10, sticky="w", pady=5)
         self.a_entry.insert(0, str(self.a_range[0]))
 
-        self.b_label = tk.Label(self.main_frame.canvas, text="Коэффициент деградации (b):", font=("calibri", 14), anchor='w', bg='#567ec2')
+        self.b_label = tk.Label(self.main_frame.canvas, text="Диапазон деградации (b):", font=("calibri", 14), anchor='w', bg='#567ec2')
         self.b_label.grid(row=5, column=0, sticky="w", padx=10, pady=5)
         self.b_entry = tk.Entry(self.main_frame.canvas, validate='key', bg='white', fg='black', font=("calibri", 12))
         self.b_entry.grid(row=5, column=1, padx=10, sticky="w", pady=5)
