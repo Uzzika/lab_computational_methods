@@ -16,7 +16,7 @@ def plot_results(results):
     x = range(len(strategies))
 
     # Создаём график
-    plt.figure(figsize=(10, 6))  # Размер графика
+    plt.figure(figsize=(8, 6))  # Размер графика
 
     # Построение графиков
     plt.bar(x, sugar_values, width=0.4, label="Выход сахара", align='center', color='blue')
