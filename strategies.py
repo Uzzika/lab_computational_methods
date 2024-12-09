@@ -1,18 +1,18 @@
 import random
 
 
-def generate_data_with_dosage(n, steps, a_range, beta_range, inorganic_influence=False, dosage=False):
+def generate_data_with_dosage(n, steps, a_range, b_range, inorganic_influence=False, dosage=False):
     """
     Генерация данных для эксперимента с учетом дозаривания и неорганических веществ.
     """
     if a_range[0] < 0 or a_range[1] <= a_range[0]:
         raise ValueError("Некорректный диапазон a_range.")
-    if beta_range[0] < 0 or beta_range[1] <= beta_range[0]:
-        raise ValueError("Некорректный диапазон beta_range.")
+    if b_range[0] < 0 or b_range[1] <= b_range[0]:
+        raise ValueError("Некорректный диапазон b_range.")
 
     # Генерация сахаристости и коэффициентов деградации
     s_matrix = [[random.uniform(*a_range) for _ in range(steps)] for _ in range(n)]
-    b_matrix = [[random.uniform(*beta_range) for _ in range(steps)] for _ in range(n)]
+    b_matrix = [[random.uniform(*b_range) for _ in range(steps)] for _ in range(n)]
 
     # Генерация параметров неорганических веществ
     inorganic_params = []
@@ -88,8 +88,8 @@ def run_experiment(n, steps, switch_step, k, s_matrix, b_matrix, inorganic_influ
     strategies = {
         "Greedy": lambda b, s, cs: max(b, key=lambda batch: s[batch][cs] if s[batch][cs] > 0 else -1),
         "Thrifty": lambda b, s, cs: min(b, key=lambda batch: s[batch][cs] if s[batch][cs] > 0 else float('inf')),
-        "Thrifty/Greedy": lambda b, s, cs: min(b, key=lambda batch: s[batch][cs] if s[batch][cs] > 0 else float('inf')) if cs < switch_step else max(b, key=lambda batch: s[batch][cs] if s[batch][cs] > 0 else -1),
-        "Greedy/Thrifty": lambda b, s, cs: max(b, key=lambda batch: s[batch][cs] if s[batch][cs] > 0 else -1) if cs < switch_step else min(b, key=lambda batch: s[batch][cs] if s[batch][cs] > 0 else float('inf')),
+        "Thr/Grd": lambda b, s, cs: min(b, key=lambda batch: s[batch][cs] if s[batch][cs] > 0 else float('inf')) if cs < switch_step else max(b, key=lambda batch: s[batch][cs] if s[batch][cs] > 0 else -1),
+        "Grd/Thr": lambda b, s, cs: max(b, key=lambda batch: s[batch][cs] if s[batch][cs] > 0 else -1) if cs < switch_step else min(b, key=lambda batch: s[batch][cs] if s[batch][cs] > 0 else float('inf')),
         "T(k)G": lambda b, s, cs: sorted(b, key=lambda batch: s[batch][cs])[min(k-1, len(b)-1)] if cs < switch_step else max(b, key=lambda batch: s[batch][cs]),
         "CTG": lambda b, s, cs: min(b, key=lambda batch: s[batch][cs]),
     }
@@ -130,7 +130,7 @@ def run_virtual_experiments(num_experiments, n, steps, switch_step, k, a_range, 
     """
     Проведение виртуальных экспериментов для оценки стратегий.
     """
-    total_results = {name: {'sugar': 0, 'losses': 0} for name in ["Greedy", "Thrifty", "Thrifty/Greedy", "Greedy/Thrifty", "T(k)G", "CTG"]}
+    total_results = {name: {'sugar': 0, 'losses': 0} for name in ["Greedy", "Thrifty", "Thr/Grd", "Grd/Thr", "T(k)G", "CTG"]}
 
     for _ in range(num_experiments):
         # Генерация данных
